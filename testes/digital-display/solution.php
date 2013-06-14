@@ -57,8 +57,10 @@ class DisplayLine
 
         $line = str_replace("\n", '', $line);
 
-        $line = str_pad($line, 27, " ", STR_PAD_RIGHT);
-        $line = substr($line, 0, 27);
+        if (strlen($line) != 27) {
+            $this->error = true;
+            return;
+        }
 
         try {
             $this->processedLines++;
